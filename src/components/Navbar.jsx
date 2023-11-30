@@ -1,14 +1,29 @@
 import { BsCart3, BsMoonFill, BsSunFill } from "react-icons/bs";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import NavLinks from "./NavLinks";
 
+const themes = {
+  luxury: "luxury",
+  cupcake: "cupcake",
+};
+
+const getThemeFromLocalStorage = () => {
+  return localStorage.getItem("theme") || themes.luxury;
+};
 const Navbar = () => {
-  const [theme, setTheme] = useState(false);
+  const [theme, setTheme] = useState(getThemeFromLocalStorage());
   const handleTheme = () => {
-    setTheme(!theme);
+    const { luxury, cupcake } = themes;
+    const newTheme = theme === luxury ? cupcake : luxury;
+    setTheme(newTheme);
   };
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
   return (
     <nav className="bg-base-200">
       <div className="navbar align-element ">
