@@ -1,8 +1,25 @@
 import React from "react";
-import { About } from "./pages";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  About,
+  Cart,
+  Checkout,
+  Error,
+  HomeLayout,
+  Landing,
+  Login,
+  Orders,
+  Products,
+  Register,
+  SingleProduct,
+} from "./pages";
+
+const router = createBrowserRouter([
+  { path: "/", element: <HomeLayout />, errorElement: <Error /> },
+]);
 
 const App = () => {
-  return <h1 className="text-3xl font-bold underline">Hello from App</h1>;
+  return <RouterProvider router={router} />;
 };
 
 export default App;
