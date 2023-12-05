@@ -15,7 +15,15 @@ import {
 } from "./pages";
 
 const router = createBrowserRouter([
-  { path: "/", element: <HomeLayout />, errorElement: <Error /> },
+  {
+    path: "/",
+    element: <HomeLayout />,
+    errorElement: <Error />,
+    children: [
+      { index: true, element: <Landing /> },
+      { path: "about", element: <About /> },
+    ],
+  },
 ]);
 
 const App = () => {
