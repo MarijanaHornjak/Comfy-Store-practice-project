@@ -15,6 +15,11 @@ const SingleProduct = () => {
   const dollarsAmount = formatPrice(price);
 
   const [productColor, setProductColor] = useState(colors[0]);
+  const [amount, setAmount] = useState(1);
+
+  const handleAmount = () => {
+    setAmount(parseInt(e.target.value));
+  };
 
   return (
     <section>
@@ -61,6 +66,34 @@ const SingleProduct = () => {
                 );
               })}
             </div>
+          </div>
+          {/* AMOUNT */}
+          <div className="form-control w-full max-w-sx ">
+            <label htmlFor="amount" className="label">
+              <h4 className="text-md font-medium tracking-wider capitalize">
+                amount
+              </h4>
+            </label>
+            <select
+              className="select select-secondary select-bordered select-md"
+              id="amount"
+              value={amount}
+              onChange={handleAmount}
+            >
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
+            </select>
+          </div>
+          {/* CART BTN */}
+
+          <div className="mt-10">
+            <button
+              className="btn btn-secondary btn-md capitalize"
+              onClick={() => console.log("add to bag")}
+            >
+              add to bag
+            </button>
           </div>
         </div>
       </div>
